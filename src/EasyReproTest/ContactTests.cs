@@ -14,9 +14,9 @@ namespace EasyRepoTest
             // 1. Create instance of the browser
             using (var xrmBrowser = new XrmBrowser(new BrowserOptions() { BrowserType=BrowserType.Chrome }))
             {
-                var url = new Uri("http://CRM774956.crm.dynamics.com");
-                var userName = "admin@CRM774956.onmicrosoft.com".ToSecureString();
-                var pwd = "cfernandez@9014".ToSecureString();
+                var url = new Uri("http://acme.crm.dynamics.com");
+                var userName = "admin@acme.onmicrosoft.com".ToSecureString();
+                var pwd = "admin@acme".ToSecureString();
                 // 2. Log-in to Dynamics 365
                 xrmBrowser.LoginPage.Login(url, userName, pwd);
 
