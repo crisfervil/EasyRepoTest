@@ -16,6 +16,13 @@ namespace EasyReproTest.Extensions
             System.IO.Directory.CreateDirectory(screenshotsDir);
             var path = $"{screenshotsDir}/screen{++screenshotsCount}.png";
             Console.WriteLine($"Screenshot: {path}");
+
+            var buildRepUri = Environment.GetEnvironmentVariable("BUILD_REPOSITORY_URI");
+            var buildNumber = Environment.GetEnvironmentVariable("Build.BuildNumber");
+
+            Console.WriteLine($"BuildRepUri:{buildRepUri}");
+            Console.WriteLine($"BuildNumber:{buildNumber}");
+
             browser.TakeWindowScreenShot(path, OpenQA.Selenium.ScreenshotImageFormat.Png);
         }
 
