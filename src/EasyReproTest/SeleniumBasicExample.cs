@@ -5,7 +5,6 @@ namespace EasyRepoTest
 {
     public class SeleniumBasicExample
     {
-        [Fact]
         public void GoogleSearch()
         {
             // 1. Initialize the Driver
