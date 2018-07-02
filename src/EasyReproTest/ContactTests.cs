@@ -3,21 +3,18 @@ using Microsoft.Dynamics365.UIAutomation.Browser;
 using System;
 using System.Collections.Generic;
 using Xunit;
+using EasyReproTest.Extensions;
 
-namespace EasyRepoTest
+namespace EasyReproTest
 {
     public class ContactTests
     {
         [Fact]
         public void CreateContact()
         {
-            var screenshotsDir = "screenshots";
-            System.IO.Directory.CreateDirectory(screenshotsDir);
-
             // 1. Create instance of the browser
             using (var xrmBrowser = new Browser(new BrowserOptions() { BrowserType=BrowserType.Chrome }))
             {
-                xrmBrowser.Driver.TakeScreenshot().SaveAsFile($"{screenshotsDir}/screen1.png");
                 // to run this from command line:
                 // ..\packages\xunit.runner.console.2.3.1\tools\net452\xunit.console.exe bin\Debug\EasyReproTest.dll
 
@@ -33,7 +30,7 @@ namespace EasyRepoTest
 
                 // 2. Log-in to Dynamics 365
                 xrmBrowser.LoginPage.Login(url, userName, pwd);
-                xrmBrowser.Driver.TakeScreenshot().SaveAsFile($"{screenshotsDir}/screen1.png");
+                xrmBrowser.TakeScreenShot();
 
                 xrmBrowser.ThinkTime(1000);
 
@@ -45,13 +42,13 @@ namespace EasyRepoTest
 
                 // 3. Go to Sales/Accounts using the Sitemap
                 xrmBrowser.Navigation.OpenSubArea("Sales", "Contacts");
-                xrmBrowser.Driver.TakeScreenshot().SaveAsFile($"{screenshotsDir}/screen2.png");
+                xrmBrowser.TakeScreenShot();
 
                 //xrmBrowser.ThinkTime(2000);
 
                 // 4. Change the active view
                 xrmBrowser.Grid.SwitchView("Active Contacts");
-                xrmBrowser.Driver.TakeScreenshot().SaveAsFile($"{screenshotsDir}/screen3.png");
+                xrmBrowser.TakeScreenShot();
 
                 //xrmBrowser.ThinkTime(500);
                 //5. Click on the "New" button
@@ -70,12 +67,14 @@ namespace EasyRepoTest
                 xrmBrowser.Entity.SetValue("mobilephone", "555-555-5555");
                 xrmBrowser.Entity.SetValue("birthdate", DateTime.Parse("11/1/1980"));
                 xrmBrowser.Entity.SetValue(new OptionSet { Name = "preferredcontactmethodcode", Value = "Email" });
-                xrmBrowser.Driver.TakeScreenshot().SaveAsFile($"{screenshotsDir}/screen4.png");
+                xrmBrowser.TakeScreenShot();
 
                 //7. Save the new record
                 xrmBrowser.CommandBar.ClickCommand("Save");
-                xrmBrowser.Driver.TakeScreenshot().SaveAsFile($"{screenshotsDir}/screen5.png");
+                xrmBrowser.TakeScreenShot();
             }
         }
     }
+
+
 }
