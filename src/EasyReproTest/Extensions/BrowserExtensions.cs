@@ -9,22 +9,24 @@ namespace EasyReproTest.Extensions
 {
     public static class BrowserExtensions
     {
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private static int screenshotsCount = 0;
         public static void TakeScreenShot(this Browser browser)
         {
             var screenshotsDir = "screenshots";
             System.IO.Directory.CreateDirectory(screenshotsDir);
             var path = $"{screenshotsDir}/screen{++screenshotsCount}.png";
-            Console.WriteLine($"Screenshot: {path}");
-
-            var buildRepUri = Environment.GetEnvironmentVariable("BUILD_REPOSITORY_URI");
-            var buildNumber = Environment.GetEnvironmentVariable("Build.BuildNumber");
-
-            Console.WriteLine($"BuildRepUri:{buildRepUri}");
-            Console.WriteLine($"BuildNumber:{buildNumber}");
+            log.Info($"Screenshot: {path}");
 
             browser.TakeWindowScreenShot(path, OpenQA.Selenium.ScreenshotImageFormat.Png);
         }
 
+        public static void LogAndScreenShot(this Browser browser, string logMessage)
+        {
+            log.Info(logMessage);
+            browser.TakeScreenShot();
+        }
     }
 }
