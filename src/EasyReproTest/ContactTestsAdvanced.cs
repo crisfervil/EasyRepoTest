@@ -21,7 +21,7 @@ namespace EasyReproTest
             TelemetryConfiguration.Active.InstrumentationKey = _instrumentationKey;
         }
 
-        //[Fact]
+        [Fact]
         public void CreateContact()
         {
             var executionId = Guid.NewGuid().ToString();
@@ -44,7 +44,6 @@ namespace EasyReproTest
                 xrmBrowser.LoginPage.Login(url, userName, pwd);
 
                 xrmBrowser.ThinkTime(1000);
-
 
                 var perf = xrmBrowser.PerformanceCenter;
                 if (!perf.IsEnabled)
