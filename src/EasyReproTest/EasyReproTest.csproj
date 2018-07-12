@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="ContactTests.cs" />
     <Compile Include="Extensions\BrowserExtensions.cs" />
+    <Compile Include="GlobalSearchTest.cs" />
     <Compile Include="SeleniumBasicExample.cs" />
     <Compile Include="ContactTestsAdvanced.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
